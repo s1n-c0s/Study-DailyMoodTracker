@@ -6,6 +6,38 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite + React</title>
+  <script>
+    let currrentMood = ""
+    function onMoodClicked(mood) {
+      console.log('mood click', mood)
+      currrentMood = mood
+    }
+
+    function getMoodColor(mood) {
+      if (mood === "howl") {
+        return 'green'
+      } else if (mood === "eye") {
+        return 'red'
+      } else {
+        return 'orange'
+      }
+    }
+
+    function onLogMoodClicked() {
+      //console.log('currentMood', currrentMood)
+      const moodSection = document.getElementById('moods-section')
+      const moodColor = getMoodColor(currrentMood)
+      //console.log('moodSection', moodSection)
+      let cell = document.createElement('div')
+      cell.style.backgroundColor = moodColor
+      cell.style.width = '15px'
+      cell.style.height = '15px'
+      cell.style.display = 'inline-block'
+      cell.style.marginRight = '8px'
+
+      moodSection.appendChild(cell)
+    }
+  </script>
 </head>
 
 <body>
@@ -13,18 +45,19 @@
   <script type="module" src="/src/main.jsx"></script> -->
   <h1>My Daily Mood</h1>
   <h2>What's you mood today?</h2>
-  <button>🥱</button>
-  <button>👀</button>
-  <button>🗡️</button>
-  <div>
+  <button onclick="onMoodClicked('howl')" style="font-size: 20px;">🥱</button>
+  <button onclick="onMoodClicked('eye')" style="font-size: 20px;">👀</button>
+  <button onclick="onMoodClicked('kill')" style="font-size: 20px;">🗡️</button>
+  <div style="margin-top:8px 0px;">
     <input type="text" placeholder="description" />
   </div>
-  <button>Log My Mood</button>
+  <button onclick="onLogMoodClicked()"> Log My Mood</button>
   <section>
-    <div>
-      <div>Red</div>
-      <div>Green</div>
-      <div>Orange</div>
+    <h2> Mood List </h2>
+    <div id="moods-section">
+      <!-- <div style="background-color: greenyellow; width: 20px; height: 15px; display: inline-block;"></div>
+      <div style="background-color: red; width: 20px; height: 15px; display: inline-block;"></div>
+      <div style="background-color: orange; width: 20px; height: 15px; display: inline-block;"></div> -->
     </div>
     <div>
       <label> Description: </label>
